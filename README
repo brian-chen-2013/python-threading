@@ -1,0 +1,15 @@
+Python2.6 threading模块
+
+练习作。
+
+可用本文件替换python2.6的threading.py文件，经测试能正常运行。
+
+threading模块经过长期使用，已经基本定型。2.6版本和2.7的版本基本没有变化，后者增加了更详细的注释。
+
+本版本对RLock，Condition，Event，Semaphore均略作修改。
+
+其中改动比较大的是Condition的__init__函数，_acquire_restore函数，_release_save函数，_is_owned函数。Condtion支持Lock和RLock，但它们在_is_owned上的行为刚好相反。Condition的解决方式是，如果传入的Lock/RLock有上述三种函数，就用它们的相应函数替换Condition的实现。Condition在__init__函数实现这个功能，但读起来有点绕。修改之处，是将上述判断在Condition的三个函数进行，由hasattr函数做判别。
+
+
+
+
